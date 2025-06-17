@@ -21,12 +21,15 @@ public class CarServiceImpl implements CarService {
     }
 
     @Override
-    public List<Car> getCars(int count) {
-        return cars.subList(0, count);
+    public List<Car> getAllCars() {
+        return cars;
     }
 
     @Override
-    public List<Car> getAllCars() {
-        return cars;
+    public List<Car> getCars(int count) {
+        if (count <= 0) {
+            return new ArrayList<>();
+        }
+        return cars.subList(0, Math.min(count, cars.size()));
     }
 }
